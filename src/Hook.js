@@ -115,10 +115,6 @@ function useFetch(url) {
 
 
 function clickOutside(fn) {
-    useEffect(() => {
-        document.addEventListener("click", handleClick);
-    }, []);
-    
     const ref = createRef();
     const handleClick = e => {
         console.log(e.target);
@@ -127,7 +123,9 @@ function clickOutside(fn) {
         }
     };
 
-
+    useEffect(() => {
+        document.addEventListener("click", handleClick);
+    }, []);
  
     return ref;
 }

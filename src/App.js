@@ -1,4 +1,5 @@
 import React from 'react';
+import Potato from './Potato';
 
 function App() {
   return (
@@ -6,6 +7,7 @@ function App() {
       <h1>
         hihi
       </h1>
+      <Potato></Potato>
     </div>
   );
 }
