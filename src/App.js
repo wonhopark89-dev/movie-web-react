@@ -91,7 +91,16 @@ class App extends React.Component {
     this.setState({ count: this.state.count - 1 });
   }
 
+  componentDidMount() {
+    console.log("component rendered");
+  }
+
+  componentDidUpdate() {
+    console.log("i just updated");
+  }
+
   render() {
+    console.log("i am rendering");
     return (
       <div>
         <h1>this number is {this.state.count}</h1>
