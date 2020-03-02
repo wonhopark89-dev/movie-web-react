@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import Moive from "./Movies";
+
 
 // function Food(props) {
 //   console.log(props);
@@ -77,22 +80,47 @@ import PropTypes from 'prop-types';
 class App extends React.Component {
 
   state = {
-    isLoading: true
+    isLoading: true,
+    movies: []
+  };
+
+  getMovies = async () => {
+    // const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+    // console.log(movies.data.data.movies);
+    // es6 like below
+    const {
+      data: {
+        data: { movies }
+      }
+    } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+    console.log(movies);
+
+    // this.setState({movies:movies});
+    // es6 can be this
+    this.setState({ movies, isLoading: false });
+
   };
 
   componentDidMount() {
-    console.log("component rendered");
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 4000)
-  }
+    this.getMovies();
+  };
 
   render() {
     console.log("i am rendering");
-    const { isLoading } = this.state;
+    const { isLoading, movies } = this.state;
     return (
       <div>
-        {isLoading ? "Loading..." : "we are ready"}
+        {isLoading ? "Loading..." : movies.map(movie => (
+          <Moive
+            key={movie.id}
+            id={movie.id}
+            year={movie.year}
+            title={movie.title}
+            summary={movie.summary}
+            poster={movie.medium_cover_image}
+            >
+          </Moive>
+        ))}
       </div>
     );
   }
