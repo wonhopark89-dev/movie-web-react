@@ -8,7 +8,7 @@ function Movie({ id, year, title, summary, poster }) {
     <div className={"movie"}>
       <Link
         to={{
-          pathname: `/moive/${id}`,
+          pathname: `/movie/${id}`,
           state: { id, year, title, summary, poster },
         }}
       >
